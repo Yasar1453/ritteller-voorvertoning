@@ -83,7 +83,8 @@ html { scroll-behavior: smooth; }
 .weg::before { content: ""; position: absolute; left: 0; width: 110vw; top: 72%; height: 4px; background: repeating-linear-gradient(90deg, #fff 0 4.4vw, #081a31 4.4vw 10vw); }
 .bus { position: absolute; left: clamp(1rem, 8vw, 9rem); bottom: 46%; width: clamp(10.5rem, 20vw, 17rem); z-index: 2; }
 img.bus { max-width: none; }
-.paal { position: absolute; left: 47%; bottom: 100%; display: grid; justify-items: center; background: #1b7a4b; color: var(--wit); font: 700 .8rem/1.15 var(--smal); font-variant-numeric: tabular-nums; padding: .2rem .45rem .25rem; border-radius: 3px; margin-bottom: .9rem; }
+/* width: max-content, anders knijpt Safari het bordje samen omdat het tegen de rechterrand begint. */
+.paal { position: absolute; left: 47%; bottom: 100%; display: grid; justify-items: center; width: max-content; white-space: nowrap; background: #1b7a4b; color: var(--wit); font: 700 .8rem/1.15 var(--smal); font-variant-numeric: tabular-nums; padding: .2rem .45rem .25rem; border-radius: 3px; margin-bottom: .9rem; }
 .paal b { font-size: .7rem; background: #c2352b; border-radius: 2px; padding: 0 .3rem; margin-bottom: .1rem; }
 .paal::after { content: ""; position: absolute; top: 100%; left: 50%; width: 3px; height: .9rem; margin-left: -1.5px; background: #8fa0b3; }
 .paal.later { display: none; }
@@ -290,6 +291,17 @@ img.bus { max-width: none; }
   .wegwijs::after { display: none; }
 }
 @media (max-width: 44rem) {
+  /* Op een telefoon is de opening alleen de boodschap en de weg: kop, tekst, knoppen, en daaronder
+     het busje met de paaltjes. De telefoon en de drie feiten staan hier niet; die maakten het vol. */
+  .held { min-height: 100svh; }
+  .held-telefoon, .feiten { display: none; }
+  .held-binnen { align-content: center; padding-top: 1rem; }
+  .held-tekst { padding-bottom: clamp(11rem, 34vw, 13rem); }
+  .held .inleiding { margin-bottom: 1.5rem; }
+  .held .weg { height: 5.75rem; }
+  .held .bus { width: 10.5rem; left: 1.25rem; }
+  .held .paal { font-size: .95rem; padding: .25rem .55rem .3rem; }
+  .held .paal b { font-size: .78rem; }
   .raam-beeld { max-width: 21rem; margin: 0 auto; border-radius: 1.75rem; border: 8px solid #050d18; }
   .raam-balk { display: none; }
   .raam-beeld img { aspect-ratio: 390 / 640; object-fit: cover; object-position: top; }
