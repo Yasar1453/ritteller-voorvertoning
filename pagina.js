@@ -25,3 +25,26 @@ if (keuzes && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
   keuzes.addEventListener("click", stop);
   keuzes.addEventListener("keydown", stop);
 }
+
+// Prijzen: de rekenhulp. De bedragen staan in de pagina zelf (data-tracker en data-staffel).
+const reken = document.querySelector(".reken");
+if (reken) {
+  const tracker = Number(reken.dataset.tracker), staffel = JSON.parse(reken.dataset.staffel);
+  const euro = (x) => "€\u00a0" + x.toLocaleString("nl-NL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const el = (id) => document.getElementById(id);
+  const schuif = el("aantal");
+  const toon = () => {
+    const n = Number(schuif.value), trede = [...staffel].reverse().find((t) => n >= t.vanaf), maand = n * trede.perMaand;
+    el("aantal-getal").textContent = n; el("aantal-woord").textContent = n === 1 ? "auto" : "auto's";
+    el("per-auto").replaceChildren(Object.assign(document.createElement("em"), { textContent: "€" }),
+      ...[...trede.perMaand.toFixed(2).replace(".", ",")].map((c) => Object.assign(document.createElement(c === "," ? "i" : "b"), { textContent: c })));
+    el("per-auto").setAttribute("aria-label", euro(trede.perMaand));
+    el("per-maand").textContent = euro(maand); el("eenmalig").textContent = euro(n * tracker); el("eerste-jaar").textContent = euro(n * tracker + 12 * maand);
+    for (const li of reken.querySelectorAll(".staffel li")) li.classList.toggle("nu", Number(li.dataset.vanaf) === trede.vanaf);
+    // Hoe ver de schuif staat, voor de blauwe vulling links van de knop.
+    schuif.style.setProperty("--deel", ((n - schuif.min) / (schuif.max - schuif.min)) * 100 + "%");
+  };
+  schuif.addEventListener("input", toon); toon();
+  // Een klik op een trede zet de schuif op het begin van die trede.
+  for (const li of reken.querySelectorAll(".staffel li")) li.addEventListener("click", () => { schuif.value = li.dataset.vanaf; toon(); });
+}

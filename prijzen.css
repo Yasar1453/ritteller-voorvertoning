@@ -1,0 +1,81 @@
+/* ============================================================================
+   Prijzen: de rekenhulp, de tracker en de voorbeelden
+   ----------------------------------------------------------------------------
+   Bouwt voort op stijl.css, pagina.css en kennisbank.css. De prijs per auto
+   staat in tellercijfers, net als de kilometerstand in de applicatie.
+   De pagina wordt gemaakt door beheer/bouw-kennisbank.mjs.
+   ============================================================================ */
+.reken { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 2rem clamp(2rem, 5vw, 4.5rem); align-items: start; padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
+.reken-vraag { font: 700 clamp(1.6rem, 3.2vw, 2.2rem)/1.1 var(--smal); margin: 0; }
+.reken-aantal { display: block; margin: .6rem 0 .25rem; font-size: 1.3rem; color: var(--grijs); }
+.reken-aantal b { font: 700 clamp(4.5rem, 12vw, 7.5rem)/.9 var(--smal); letter-spacing: -.03em; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+/* De schuif: een dikke baan met een gele knop als een kentekenplaatje. */
+.reken input[type="range"] { -webkit-appearance: none; appearance: none; --deel: 10%; width: 100%; height: 44px; min-height: 44px; padding: 0; margin: .5rem 0 0; border: 0; background: none; cursor: pointer; }
+.reken input[type="range"]::-webkit-slider-runnable-track { height: .9rem; border-radius: 99px; background: linear-gradient(90deg, var(--accent) var(--deel), var(--vlak-donker) var(--deel)); }
+.reken input[type="range"]::-moz-range-track { height: .9rem; border-radius: 99px; background: var(--vlak-donker); }
+.reken input[type="range"]::-moz-range-progress { height: .9rem; border-radius: 99px; background: var(--accent); }
+.reken input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 2.5rem; height: 2.1rem; margin-top: -.6rem; border-radius: 7px; background: var(--plaat); border: 2px solid #111; box-shadow: 0 2px 6px #13202c40; }
+.reken input[type="range"]::-moz-range-thumb { width: 2.2rem; height: 1.8rem; border-radius: 7px; background: var(--plaat); border: 2px solid #111; }
+.reken input[type="range"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 8px; }
+
+/* De staffel: drie stukken weg onder de schuif, even breed als het bereik dat ze beslaan. */
+.staffel { list-style: none; display: grid; grid-template-columns: minmax(9.5rem, 9fr) minmax(9.5rem, 5fr) minmax(9.5rem, 16fr); gap: .4rem; margin: .9rem 0 0; padding: 0; }
+.staffel li { min-width: 0; padding: .8rem .9rem .9rem; border-radius: var(--r); background: var(--vlak); border: 1px solid var(--vlak-donker); border-top: 4px solid var(--vlak-donker); cursor: pointer; transition: background-color .2s, border-color .2s; }
+.staffel li:hover { background: var(--vlak-donker); }
+.staffel li.nu { background: var(--wit); border-color: var(--accent); }
+.staffel span { display: block; font-size: .9rem; color: var(--grijs); line-height: 1.25; }
+.staffel strong { display: block; font: 700 clamp(1.35rem, 2.6vw, 1.9rem)/1.2 var(--smal); margin-top: .25rem; white-space: nowrap; }
+.staffel li.nu strong { color: var(--accent-donker); }
+.staffel small { display: block; font-size: .85rem; color: var(--grijs); line-height: 1.25; }
+.reken-noot { margin-top: 1rem; color: var(--grijs); font-size: .95rem; }
+
+.reken-rechts { background: var(--nacht); color: var(--wit); border-radius: 18px; padding: clamp(1.25rem, 3vw, 2rem); position: sticky; top: 1.5rem; }
+.reken-kop { color: var(--nacht-tekst); font-weight: 600; }
+.prijs-cijfers { display: flex; align-items: flex-end; gap: 4px; margin: .6rem 0 1.4rem; }
+.prijs-cijfers em { font: 700 2rem/1.6 var(--smal); font-style: normal; margin-right: .35rem; color: var(--plaat); }
+.prijs-cijfers b { width: clamp(2.6rem, 6vw, 3.4rem); height: clamp(3.4rem, 8vw, 4.4rem); display: grid; place-items: center; background: var(--asfalt); border: 1px solid var(--nacht-lijn); border-radius: 7px; font: 700 clamp(2.4rem, 6vw, 3.2rem)/1 var(--smal); font-variant-numeric: tabular-nums; }
+.prijs-cijfers i { font: 700 2.6rem/1 var(--smal); font-style: normal; padding-bottom: .15rem; }
+.reken-som { display: grid; gap: 0; margin-bottom: 1.4rem; }
+.reken-som div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--nacht-lijn); }
+.reken-som dt { color: var(--nacht-tekst); }
+.reken-som dd { font: 700 1.4rem/1.2 var(--smal); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.reken-som .som { border-top: 2px solid var(--wit); }
+.reken-som .som dt { color: var(--wit); font-weight: 600; }
+.reken-som .som dd { font-size: 1.75rem; color: var(--plaat); }
+.reken-rechts .knop { width: 100%; }
+.reken-btw { margin-top: .9rem; font-size: .9rem; color: var(--nacht-tekst); }
+.reken-rechts :focus-visible { outline-color: var(--plaat); }
+
+/* ── De tracker ── */
+.tracker-blok { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 2rem clamp(2rem, 6vw, 5rem); align-items: center; }
+.tracker-beeld { background: var(--nacht); border-radius: 18px; padding: clamp(1.5rem, 5vw, 3.5rem); display: grid; place-items: center; overflow: hidden; }
+.tracker { width: min(100%, 21rem); height: auto; transform: rotate(-7deg); filter: drop-shadow(0 22px 28px #02081299); }
+.tracker-blok .onderkop { margin-bottom: 1.4rem; }
+.punten.donker svg { color: var(--zakelijk); }
+.punten.donker { font-size: 1.05rem; }
+
+/* ── Wat erbij zit en de voorbeelden ── */
+.inbegrepen { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 2.5rem clamp(2rem, 6vw, 5rem); align-items: start; padding-top: clamp(3rem, 8vw, 6rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
+.site .inbegrepen h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin-bottom: 1.2rem; }
+.tabel-vak { border: 1px solid var(--lijn); border-radius: var(--r); overflow-x: auto; }
+.prijstabel { font-size: 1rem; }
+.prijstabel th { background: var(--vlak); border-bottom: 2px solid var(--inkt); white-space: normal; line-height: 1.25; vertical-align: bottom; }
+.prijstabel td { padding: .8rem .75rem; font-variant-numeric: tabular-nums; }
+.prijstabel td:first-child { font-weight: 600; white-space: nowrap; }
+
+@media (max-width: 62rem) {
+  .reken, .tracker-blok, .inbegrepen { grid-template-columns: minmax(0, 1fr); }
+  .reken-rechts { position: static; }
+}
+@media (max-width: 36rem) {
+  /* Op een telefoon staan de treden onder elkaar; naast elkaar worden ze te smal om te lezen. */
+  .staffel { grid-template-columns: minmax(0, 1fr); }
+  .staffel li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 1rem; border-top-width: 1px; border-left: 4px solid var(--vlak-donker); }
+  .staffel li.nu { border-left-color: var(--accent); }
+  .staffel span { grid-column: 1; grid-row: 1 / 3; font-size: 1rem; color: var(--inkt); font-weight: 600; }
+  .staffel strong { margin: 0; text-align: right; }
+  .staffel small { text-align: right; }
+  .prijstabel { font-size: .9rem; }
+  .prijstabel th, .prijstabel td { padding-left: .5rem; padding-right: .5rem; }
+}
