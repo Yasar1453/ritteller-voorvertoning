@@ -38,7 +38,7 @@ if (reken) {
     el("aantal-getal").textContent = n; el("aantal-woord").textContent = n === 1 ? "auto" : "auto's";
     el("per-auto").replaceChildren(Object.assign(document.createElement("em"), { textContent: "€" }),
       ...[...trede.perMaand.toFixed(2).replace(".", ",")].map((c) => Object.assign(document.createElement(c === "," ? "i" : "b"), { textContent: c })));
-    el("per-auto").setAttribute("aria-label", euro(trede.perMaand));
+    el("per-auto").setAttribute("aria-label", euro(trede.perMaand) + " per auto per maand");
     el("per-maand").textContent = euro(maand); el("eenmalig").textContent = euro(n * tracker); el("eerste-jaar").textContent = euro(n * tracker + 12 * maand);
     for (const li of reken.querySelectorAll(".staffel li")) li.classList.toggle("nu", Number(li.dataset.vanaf) === trede.vanaf);
     // Hoe ver de schuif staat, voor de blauwe vulling links van de knop.
