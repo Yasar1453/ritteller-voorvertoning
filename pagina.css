@@ -291,17 +291,24 @@ img.bus { max-width: none; }
   .wegwijs::after { display: none; }
 }
 @media (max-width: 44rem) {
-  /* Op een telefoon is de opening alleen de boodschap en de weg: kop, tekst, knoppen, en daaronder
-     het busje met de paaltjes. De telefoon en de drie feiten staan hier niet; die maakten het vol. */
+  /* Op een telefoon staat het platform als achtergrond in de opening: bovenaan de kop en de tekst,
+     daaronder de schuine telefoon die naar onderen in het blauw wegloopt, met de twee knoppen
+     eroverheen. Helemaal onderaan de weg met het busje. De drie feiten staan hier niet. */
   .held { min-height: 100svh; }
-  .held-telefoon, .feiten { display: none; }
-  .held-binnen { align-content: center; padding-top: 1rem; }
-  .held-tekst { padding-bottom: clamp(11rem, 34vw, 13rem); }
-  .held .inleiding { margin-bottom: 1.5rem; }
-  .held .weg { height: 5.75rem; }
-  .held .bus { width: 10.5rem; left: 1.25rem; }
-  .held .paal { font-size: .95rem; padding: .25rem .55rem .3rem; }
-  .held .paal b { font-size: .78rem; }
+  .feiten { display: none; }
+  .held-tekst { display: contents; }
+  .held-binnen { grid-template-rows: auto auto minmax(23rem, 1fr); gap: 0; padding-top: .5rem; align-items: start; }
+  .site .held h1 { font-size: clamp(2.6rem, 12.5vw, 3.4rem); }
+  .held .inleiding { margin: .9rem 0 1.1rem; font-size: 1.1rem; }
+  .held-telefoon { grid-row: 3; grid-column: 1; justify-self: center; align-self: start; width: min(19rem, 74vw); height: 0; margin: .75rem 0 0; perspective-origin: 50% 19rem; }
+  .held-binnen::after { content: ""; grid-row: 3; grid-column: 1; align-self: stretch; justify-self: center; width: 100vw; z-index: 2; pointer-events: none;
+    background: linear-gradient(180deg, #0c274800 0%, #0c274800 26%, #0c2748d9 52%, #0c2748 72%); }
+  /* Onder de knoppen blijft ruimte voor de weg en voor een paaltje dat erboven uitsteekt. */
+  .held .knoppen { grid-row: 3; grid-column: 1; align-self: end; z-index: 4; margin-bottom: 9.4rem; gap: .5rem; }
+  .held .weg { height: 5.25rem; }
+  .held .bus { width: 9.5rem; left: 1.25rem; }
+  .held .paal { font-size: .85rem; margin-bottom: .7rem; }
+  .held .paal::after { height: .7rem; }
   .raam-beeld { max-width: 21rem; margin: 0 auto; border-radius: 1.75rem; border: 8px solid #050d18; }
   .raam-balk { display: none; }
   .raam-beeld img { aspect-ratio: 390 / 640; object-fit: cover; object-position: top; }
