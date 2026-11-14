@@ -42,6 +42,7 @@ if (reken) {
     el("per-maand").textContent = euro(maand); el("eenmalig").textContent = euro(n * tracker); el("eerste-jaar").textContent = euro(n * tracker + 12 * maand);
     for (const li of reken.querySelectorAll(".staffel li")) li.classList.toggle("nu", Number(li.dataset.vanaf) === trede.vanaf);
     // Hoe ver de schuif staat, voor de blauwe vulling links van de knop.
+    el("naar-offerte").href = "/offerte?autos=" + n;
     schuif.style.setProperty("--deel", ((n - schuif.min) / (schuif.max - schuif.min)) * 100 + "%");
   };
   // Het wagenpark: evenveel busjes als de schuif aangeeft, in verschillende kleuren, elk met onze
@@ -78,4 +79,22 @@ if (reken) {
   schuif.addEventListener("input", () => { toon(); rijd(); }); toon(); rijd();
   // Een klik op een trede zet de schuif op het begin van die trede.
   for (const li of reken.querySelectorAll(".staffel li")) li.addEventListener("click", () => { schuif.value = li.dataset.vanaf; toon(); rijd(); });
+}
+
+// Offerte: het aantal auto's uit de rekenhulp overnemen, de richtprijs tonen en een foutmelding
+// van het verzendscript laten zien.
+const offerte = document.querySelector(".offerte-formulier");
+if (offerte) {
+  const vraag = new URLSearchParams(location.search), autos = offerte.elements.autos, som = document.getElementById("offerte-som");
+  const euro = (x) => "€\u00a0" + x.toLocaleString("nl-NL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (Number(vraag.get("autos")) >= 1) autos.value = Math.min(999, Math.floor(Number(vraag.get("autos"))));
+  const reken2 = () => {
+    const n = Math.floor(Number(autos.value));
+    if (!(n >= 1)) { som.textContent = "Vul in om hoeveel auto's het gaat."; return; }
+    const t = n >= 15 ? 2.99 : n >= 10 ? 3.99 : 4.99;
+    som.textContent = `${n} ${n === 1 ? "auto" : "auto's"}: ${euro(n * t)} per maand en ${euro(n * 99.99)} eenmalig voor de trackers, exclusief btw.`;
+  };
+  autos.addEventListener("input", reken2); reken2();
+  document.getElementById("o-gestart").value = Math.floor(Date.now() / 1000);
+  if (vraag.get("fout")) { const f = document.getElementById("offerte-fout"); f.textContent = vraag.get("fout"); f.hidden = false; }
 }

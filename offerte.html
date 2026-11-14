@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c2748">
+  <title>Offerte aanvragen | Ritteller</title>
+  <meta name="description" content="Vraag een offerte aan voor Ritteller. Je krijgt een factuur per mail; na betaling sturen we de trackers op.">
+  <link rel="icon" href="/ritteller-voorvertoning/icoon.svg" type="image/svg+xml">
+  <link rel="preload" href="/ritteller-voorvertoning/lettertypen/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/ritteller-voorvertoning/lettertypen/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/ritteller-voorvertoning/stijl.css?v=267a8bfb">
+  <link rel="stylesheet" href="/ritteller-voorvertoning/pagina.css?v=267a8bfb">
+  <link rel="stylesheet" href="/ritteller-voorvertoning/kennisbank.css?v=267a8bfb">
+  <link rel="stylesheet" href="/ritteller-voorvertoning/prijzen.css?v=267a8bfb">
+</head>
+<body class="site" id="top">
+  <div class="kb-kop">
+    <header class="top baan">
+      <a class="merk" href="/ritteller-voorvertoning/" aria-label="Ritteller, naar de startpagina"><img src="/ritteller-voorvertoning/icoon.svg" alt="" width="34" height="34"><div><strong>Ritteller</strong></div></a>
+      <nav class="wijzer" aria-label="Hoofdmenu">
+        <a href="/ritteller-voorvertoning/#zo-werkt-het">Zo werkt het</a>
+        <a href="/ritteller-voorvertoning/#platform">Het platform</a>
+        <a class="altijd" href="/ritteller-voorvertoning/prijzen">Prijzen</a>
+        <a href="/ritteller-voorvertoning/installatie">Installatie</a>
+        <a href="/ritteller-voorvertoning/kennisbank">Kennisbank</a>
+      </nav>
+      <a class="knop licht" href="/ritteller-voorvertoning/app">Inloggen</a>
+    </header>
+    <div class="baan kb-titel">
+      <h1>Offerte aanvragen</h1>
+      <p class="inleiding">Vul het formulier in. Je krijgt van ons een offerte met factuur per mail. Na betaling sturen we de trackers op.</p>
+    </div>
+    <div class="weg" aria-hidden="true"></div>
+  </div>
+  <main>
+    <section class="baan offerte" id="formulier">
+      <form class="offerte-formulier" method="post" action="/ritteller-voorvertoning/offerte-verstuur.php">
+        <div class="fout" role="alert" id="offerte-fout" hidden></div>
+        <h2>Je bedrijf</h2>
+        <div class="rij"><div class="veld"><label for="o-bedrijf">Bedrijfsnaam</label><input id="o-bedrijf" name="bedrijf" required autocomplete="organization" maxlength="120"></div><div class="veld"><label for="o-kvk">KvK-nummer (mag later)</label><input id="o-kvk" name="kvk" inputmode="numeric" maxlength="12"></div></div>
+        <div class="rij"><div class="veld"><label for="o-naam">Je naam</label><input id="o-naam" name="naam" required autocomplete="name" maxlength="120"></div><div class="veld"><label for="o-telefoon">Telefoon (mag leeg)</label><input id="o-telefoon" name="telefoon" type="tel" autocomplete="tel" maxlength="40"></div></div>
+        <div class="veld"><label for="o-email">E-mailadres</label><input id="o-email" name="email" type="email" required autocomplete="email" maxlength="200"><p class="uitleg">Hier sturen we de offerte en de factuur naartoe.</p></div>
+        <h2>Je wagenpark</h2>
+        <div class="veld"><label for="o-autos">Aantal auto's</label><input id="o-autos" name="autos" type="number" required min="1" max="999" value="4" inputmode="numeric"><p class="uitleg"><span id="offerte-som">4 auto's: € 19,96 per maand en € 399,96 eenmalig voor de trackers, exclusief btw.</span></p></div>
+        <h2>Waar sturen we de trackers heen?</h2>
+        <div class="veld"><label for="o-straat">Straat en huisnummer</label><input id="o-straat" name="straat" required autocomplete="street-address" maxlength="120"></div>
+        <div class="rij"><div class="veld"><label for="o-postcode">Postcode</label><input id="o-postcode" name="postcode" required autocomplete="postal-code" maxlength="10"></div><div class="veld"><label for="o-plaats">Plaats</label><input id="o-plaats" name="plaats" required autocomplete="address-level2" maxlength="80"></div></div>
+        <div class="veld"><label for="o-opmerking">Vraag of opmerking (mag leeg)</label><textarea id="o-opmerking" name="opmerking" maxlength="2000"></textarea></div>
+        <div class="niet-invullen" aria-hidden="true"><label for="o-website">Laat dit veld leeg</label><input id="o-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <input type="hidden" name="gestart" id="o-gestart" value="0">
+        <button class="knop geel" type="submit">Aanvraag versturen</button>
+        <p class="uitleg">We gebruiken je gegevens alleen om je aanvraag te beantwoorden. Je zit nog nergens aan vast.</p>
+      </form>
+      <aside class="offerte-zo">
+        <h2>Zo gaat het</h2>
+        <ol class="stappenlijst">
+          <li><h3>Je vult het formulier in</h3><p>Dat kost een minuut.</p></li>
+          <li><h3>Wij mailen de offerte met factuur</h3><p>Voor de trackers en de eerste periode.</p></li>
+          <li><h3>Je betaalt de factuur</h3><p>Per bankoverschrijving.</p></li>
+          <li><h3>Wij sturen de trackers op</h3><p>Met je inlog voor het platform. <a href="/ritteller-voorvertoning/installatie">Installeren</a> doe je zelf, in vijf minuten.</p></li>
+        </ol>
+        <p class="uitleg">Liever mailen? <a href="mailto:info@ritteller.nl">info@ritteller.nl</a></p>
+      </aside>
+    </section>
+  </main>
+  
+  <footer class="voet">
+    <div class="baan voet-binnen">
+      <div class="voet-merk">
+        <a class="merk" href="/ritteller-voorvertoning/"><img src="/ritteller-voorvertoning/icoon.svg" alt="" width="34" height="34"><div><strong>Ritteller</strong></div></a>
+        <p>Een sluitende rittenregistratie voor bedrijfsauto's, zonder typewerk.</p>
+        <a class="knop licht" href="/ritteller-voorvertoning/app">Inloggen</a>
+      </div>
+      <nav class="wegwijs" aria-label="Onderaan de pagina">
+        <a href="/ritteller-voorvertoning/#grens"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>De 500 kilometer</a>
+        <a href="/ritteller-voorvertoning/#zo-werkt-het"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Zo werkt het</a>
+        <a href="/ritteller-voorvertoning/#platform"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Het platform</a>
+        <a href="/ritteller-voorvertoning/prijzen"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Prijzen</a>
+        <a href="/ritteller-voorvertoning/installatie"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Installatie</a>
+        <a href="/ritteller-voorvertoning/kennisbank"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Kennisbank</a>
+        <a href="/ritteller-voorvertoning/offerte"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Offerte aanvragen</a>
+      </nav>
+      <div class="voet-contact">
+        <h2>Een offerte of een vraag?</h2>
+        <p><a href="/ritteller-voorvertoning/offerte">Vraag een offerte aan</a> of mail ons.</p>
+        <a href="mailto:info@ritteller.nl">info@ritteller.nl</a>
+      </div>
+    </div>
+    <div class="voet-naam" aria-hidden="true">Ritteller</div>
+    <div class="baan voet-onder"><span>© 2026 Ritteller</span><a href="#top">Naar boven</a></div>
+  </footer>
+  <script type="module" src="/ritteller-voorvertoning/pagina.js?v=267a8bfb"></script>
+</body>
+</html>

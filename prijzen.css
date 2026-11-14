@@ -95,13 +95,45 @@
 .prijstabel td { padding: .8rem .75rem; font-variant-numeric: tabular-nums; }
 .prijstabel td:first-child { font-weight: 600; white-space: nowrap; }
 
+/* ── Installatie: de OBD-aansluiting vinden ── */
+.obd { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
+.obd .deel-kop { margin-bottom: 1.5rem; }
+.site .obd h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+.obd-raster { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 1.5rem clamp(1.5rem, 4vw, 3rem); align-items: start; }
+.obd-plekken svg { display: block; width: 100%; height: auto; }
+.obd-lijst { list-style: none; display: grid; gap: .55rem; margin: 1.1rem 0 0; padding: 0; }
+.obd-lijst li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .75rem; align-items: start; line-height: 1.4; }
+.obd-lijst b { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%; background: var(--plaat); border: 1.5px solid #111; font: 700 1.1rem/1 var(--smal); color: #111; }
+.obd-fotos { display: grid; gap: 1.25rem; }
+.obd-fotos img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r); background: var(--vlak); }
+.obd-fotos figcaption { margin-top: .5rem; line-height: 1.4; }
+.obd-fotos small { display: block; color: var(--grijs); font-size: .85rem; margin-top: .15rem; }
+.obd-fotos small a { color: var(--grijs); }
+
+/* ── Offerte aanvragen ── */
+.offerte { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 2.5rem clamp(2rem, 6vw, 5rem); align-items: start; padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(3rem, 8vw, 6rem); }
+.site .offerte h2 { font: 700 1.6rem/1.15 var(--smal); letter-spacing: 0; margin: 2rem 0 1rem; }
+.site .offerte form h2:first-of-type, .site .offerte-zo h2 { margin-top: 0; }
+.offerte-formulier .knop { width: 100%; margin-top: .5rem; cursor: pointer; }
+.offerte-formulier input, .offerte-formulier textarea { font-size: 1.05rem; }
+.niet-invullen { position: absolute; left: -200vw; width: 1px; height: 1px; overflow: hidden; }
+.offerte-zo { background: var(--vlak); border: 1px solid var(--vlak-donker); border-radius: 16px; padding: clamp(1.25rem, 3vw, 2rem); position: sticky; top: 1.5rem; }
+.offerte-zo .stappenlijst li { padding-left: 2.4rem; padding-bottom: 1.25rem; }
+.offerte-zo .stappenlijst li:last-child { border-left-color: var(--vlak); }
+.offerte-zo .stappenlijst li::before { background: var(--vlak); }
+.offerte-zo h3 { font: 700 1.2rem/1.3 var(--smal); }
+.offerte-zo li p { color: var(--grijs); }
+
 @media (max-width: 62rem) {
   .reken, .tracker-blok, .inbegrepen { grid-template-columns: minmax(0, 1fr); }
-  .prijs-held { grid-template-columns: minmax(0, 1fr); }
+  .prijs-held, .offerte, .obd-raster { grid-template-columns: minmax(0, 1fr); }
+  .obd-fotos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .offerte-zo { position: static; }
   .apparaat { width: min(62%, 15rem); margin-top: .5rem; }
   .reken-rechts { position: static; }
 }
 @media (max-width: 36rem) {
+  .obd-fotos { grid-template-columns: minmax(0, 1fr); }
   /* Op een telefoon staan de treden onder elkaar; naast elkaar worden ze te smal om te lezen. */
   .staffel { grid-template-columns: minmax(0, 1fr); }
   .staffel li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 1rem; border-top-width: 1px; border-left: 4px solid var(--vlak-donker); }
